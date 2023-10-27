@@ -10,7 +10,7 @@ require('dotenv').config();
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'http://coffee-life-family.netlify.app',
     credentials: true
   }));
   await app.listen(process.env.PORT, '0.0.0.0');
