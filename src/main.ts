@@ -13,7 +13,7 @@ async function bootstrap() {
     origin: 'http://localhost:5173',
     credentials: true
   }));
-  await app.listen(process.env.PORT || 9500);
+  await app.listen(process.env.PORT, '0.0.0.0');
 
   const userService = app.get(UserService);
   const surveyService = app.get(SurveyService)
