@@ -3,7 +3,6 @@ import { AppModule } from './app.module';
 import { UserService } from './user/user.service';
 import { User } from './entities/user.entity';
 import * as cors from 'cors';
-import { Question } from './entities/survey-question.entity';
 import { SurveyService } from './survey/survey.service';
 require('dotenv').config();
 
@@ -14,7 +13,6 @@ async function bootstrap() {
     credentials: true
   }));
   await app.listen(process.env.PORT, '0.0.0.0');
-  console.log('for prod')
   const userService = app.get(UserService);
   const surveyService = app.get(SurveyService)
 
