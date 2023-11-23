@@ -32,5 +32,4 @@ export class UserController {
         this.userService.create(body)
         return { message: 'Added new user', user: body }
     }
-    w
 }

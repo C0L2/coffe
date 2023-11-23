@@ -8,27 +8,26 @@ require('dotenv').config();
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.use(cors({
-    origin: 'https://coffelife.netlify.app',
-    credentials: true
-  }));
+  /*  app.use(cors({
+     origin: process.env.CORS_ORIGIN_ALLOW_DEPLOY || process.env.CORS_ORIGIN_ALLOW_LOCAL,
+     credentials: true
+   })); */
+
   await app.listen(process.env.PORT, '0.0.0.0');
   const userService = app.get(UserService);
   const surveyService = app.get(SurveyService)
 
-  const admin = await userService.findOneByNickname('admin-sigma');
+  const admin = await userService.findOneByNickname(process.env.ADMIN_LOGIN_USENAME);
 
   if (!admin) {
     const newUser = new User();
-    newUser.firstName = 'Samuel';
-    newUser.lastName = 'Vacaras';
-    newUser.nickname = 'admin-sigma';
+    newUser.nickname = process.env.ADMIN_LOGIN_USENAME;
     newUser.role = 'admin';
 
-    const createdUser = await userService.create(newUser);
+    await userService.create(newUser);
   }
 
-  await surveyService.createQuestion("Считаешь ли ты настоящим счатьем жизнь с Богом?")
+  await surveyService.createQuestion(process.env.SURVEY_QUESTION)
 
 }
 bootstrap();

@@ -1,16 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn } from 'typeorm';
-import { Questions } from './question.entity';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class User {
     @PrimaryGeneratedColumn()
     id: number;
-
-    @Column()
-    firstName: string;
-
-    @Column()
-    lastName: string;
 
     @Column()
     nickname: string;
