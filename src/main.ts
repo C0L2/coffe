@@ -4,15 +4,18 @@ import { AppModule } from './app.module';
 import { UserService } from './user/user.service';
 import { User } from './entities/user.entity';
 import { SurveyService } from './survey/survey.service';
-require('dotenv').config();
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.use(cors({
+  app.enableCors({
     origin: 'https://coffik.netlify.app',
-    credentials: true
-  }));
+    credentials: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  });
 
   await app.listen(process.env.PORT, '0.0.0.0');
   const userService = app.get(UserService);
