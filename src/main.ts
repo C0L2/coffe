@@ -1,3 +1,4 @@
+import * as cors from 'cors';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { UserService } from './user/user.service';
@@ -6,12 +7,13 @@ import { SurveyService } from './survey/survey.service';
 require('dotenv').config();
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true });
-  app.enableCors({
-    origin: 'http://localhost:5173/',
-    credentials: true,
-  });
-  await app.listen(9500);
+  const app = await NestFactory.create(AppModule);
+
+  app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+  }));
+  await app.listen(process.env.PORT || 9500);
   const userService = app.get(UserService);
   const surveyService = app.get(SurveyService)
 
