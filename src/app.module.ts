@@ -22,8 +22,8 @@ import { ConfigModule } from '@nestjs/config';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
       entities: [User, Questions, Answer, Question],
-      synchronize: true,
-      // ssl: true, //add in deployment
+      synchronize: false,
+      ssl: true, //add in deployment
     }),
     UserModule,
     QuestionsModule,
