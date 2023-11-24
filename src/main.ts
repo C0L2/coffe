@@ -7,13 +7,9 @@ import { SurveyService } from './survey/survey.service';
 require('dotenv').config();
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  /*  app.use(cors({
-     origin: process.env.CORS_ORIGIN_ALLOW_DEPLOY || process.env.CORS_ORIGIN_ALLOW_LOCAL,
-     credentials: true
-   })); */
-
-  await app.listen(process.env.PORT, '0.0.0.0');
+  const app = await NestFactory.create(AppModule, { cors: true });
+  app.enableCors();
+  await app.listen(9500);
   const userService = app.get(UserService);
   const surveyService = app.get(SurveyService)
 

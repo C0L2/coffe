@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, HttpException, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from '../dtos/create-user.dto';
 
@@ -26,7 +26,7 @@ export class UserController {
     async create(@Body() body: CreateUserDto) {
         const user = await this.userService.findOneByNickname(body.nickname)
 
-        if (user) return { message: 'This nickname is already taken' }
+        if (user) throw new BadRequestException('этот ник уже занят | aceasta porecla este deja luata');
 
         body.role = 'user'
         this.userService.create(body)

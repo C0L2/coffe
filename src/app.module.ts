@@ -23,7 +23,7 @@ import { ConfigModule } from '@nestjs/config';
       database: process.env.DB_DATABASE,
       entities: [User, Questions, Answer, Question],
       synchronize: true,
-      // ssl: true, // Elimină această linie
+      // ssl: true, //add in deployment
     }),
     UserModule,
     QuestionsModule,

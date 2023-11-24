@@ -1,4 +1,4 @@
-import { Inject, Injectable, forwardRef } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../entities/user.entity';
@@ -7,7 +7,6 @@ import { CreateUserDto } from '../dtos/create-user.dto';
 @Injectable()
 export class UserService {
     constructor(
-        @Inject(forwardRef(() => User))
         @InjectRepository(User)
         private userRepository: Repository<User>,
     ) { }
