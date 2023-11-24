@@ -10,7 +10,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.use(cors({
-    origin: 'https://coffik.netlify.app/',
+    origin: 'https://coffik.netlify.app',
     credentials: true
   }));
 
