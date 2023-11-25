@@ -10,24 +10,26 @@ dotenv.config();
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
+  app.enableCors({
+    origin: false,
+  });
   // Middleware pentru gestionarea cererilor OPTIONS
-  app.use(cors());
+  // app.use(cors());
 
   // Restul configurării CORS pentru cererile principale
-  const allowedOrigins = ['https://coffik.netlify.app'];
+  // const allowedOrigins = ['https://coffik.netlify.app'];
 
-  app.use(cors({
-    /* origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    credentials: true, */
-    origin: false,
-  }));
+  // app.use(cors({
+  /* origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, */
+  //   origin: false,
+  // }));
 
   await app.listen(process.env.PORT, '0.0.0.0');
 
