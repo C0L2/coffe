@@ -13,6 +13,7 @@ async function bootstrap() {
 
   app.use(cors({
     origin: "https://coffik.netlify.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
   }));
 
