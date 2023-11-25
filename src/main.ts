@@ -17,7 +17,7 @@ async function bootstrap() {
     credentials: true
   }));
 
-  await app.listen(process.env.PORT, '0.0.0.0');
+  await app.listen(process.env.PORT, '127.0.0.1');
   const userService = app.get(UserService);
   const surveyService = app.get(SurveyService)
 
