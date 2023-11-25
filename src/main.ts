@@ -18,14 +18,15 @@ async function bootstrap() {
   const allowedOrigins = ['https://coffik.netlify.app'];
 
   app.use(cors({
-    origin: (origin, callback) => {
+    /* origin: (origin, callback) => {
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
         callback(new Error('Not allowed by CORS'));
       }
     },
-    credentials: true,
+    credentials: true, */
+    origin: false,
   }));
 
   await app.listen(process.env.PORT, '0.0.0.0');
