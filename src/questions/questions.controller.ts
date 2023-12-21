@@ -11,6 +11,11 @@ export class QuestionsController {
         return this.qSer.getAll();
     }
 
+    @Get('delete-all')
+    async deleteAllQuestions() {
+        await this.qSer.deleteAll()
+    }
+
     @Post('create-question')
     async create(@Body() body: CreateQuestionDto) {
         await this.qSer.create(body)

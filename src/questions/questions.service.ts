@@ -23,5 +23,9 @@ export class QuestionsService {
     async deleteById(id: number): Promise<void> {
         await this.questionsRepository.delete(id);
     }
+
+    async deleteAll(): Promise<void> {
+        await this.questionsRepository.clear();
+    }
 }
 
