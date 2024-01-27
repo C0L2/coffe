@@ -12,7 +12,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.use(cors({
-    origin: ["https://coffe-life.netlify.app", "http://localhost:5173"],
+    origin: ["https://coffee-lifemd.netlify.app", "http://localhost:5173"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
   }));
