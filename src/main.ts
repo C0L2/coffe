@@ -11,28 +11,30 @@ dotenv.config();
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.use(cors({
-    origin: ["https://coffee-lifemd.netlify.app", "http://localhost:5173"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
-  }));
+  app.use(
+    cors({
+      origin: ['https://coffee-lifemd.netlify.app', 'http://localhost:5173'],
+      methods: ['GET', 'POST', 'PUT', 'DELETE'],
+      credentials: true,
+    }),
+  );
 
   await app.listen(process.env.PORT, '127.0.0.1');
   const userService = app.get(UserService);
-  const surveyService = app.get(SurveyService)
+  const surveyService = app.get(SurveyService);
 
-  const admin = await userService.findOneByNickname(process.env.ADMIN_LOGIN_USENAME);
+  const admin = await userService.findOneByNickname(
+    /* process.env.ADMIN_LOGIN_USENAME */ 'am',
+  );
 
   if (!admin) {
     const newUser = new User();
-    newUser.nickname = process.env.ADMIN_LOGIN_USENAME;
+    newUser.nickname = /* process.env.ADMIN_LOGIN_USENAME */ 'am';
     newUser.role = 'admin';
 
     await userService.create(newUser);
   }
 
-  await surveyService.createQuestion(process.env.SURVEY_QUESTION)
-
+  // await surveyService.createQuestion(process.env.SURVEY_QUESTION);
 }
 bootstrap();
-

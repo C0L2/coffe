@@ -15,15 +15,15 @@ import { ConfigModule } from '@nestjs/config';
       isGlobal: true,
     }),
     TypeOrmModule.forRoot({
-      type: "postgres",
-      host: process.env.DB_HOST,
-      port: parseInt(process.env.DB_PORT),
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
+      type: 'postgres',
+      host: /* process.env.DB_HOST */ '172.17.0.2',
+      port: /* parseInt(process.env.DB_PORT) */ 5432,
+      username: /* process.env.DB_USERNAME */ 'tequilabot',
+      password: /* process.env.DB_PASSWORD */ 'porchecayen',
+      database: /* process.env.DB_DATABASE */ 'coffe-life-db',
       entities: [User, Questions, Answer, Question],
       synchronize: true,
-      ssl: true
+      ssl: false,
     }),
     UserModule,
     QuestionsModule,
@@ -32,4 +32,4 @@ import { ConfigModule } from '@nestjs/config';
   controllers: [],
   providers: [],
 })
-export class AppModule { }
+export class AppModule {}
